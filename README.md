@@ -171,3 +171,142 @@ class Solution {
     }
 }
 
+# Bulls and Cows
+
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        b,c=0,0
+        s,g=[],[]
+        for i in range(len(secret)):
+            if secret[i]==guess[i]:
+                b+=1
+            else:
+                s.append(secret[i])
+                g.append(guess[i])
+        print(g,s)
+        for i in g:
+            if i in s:
+                c+=1
+                s.remove(i)
+        return str(b)+'A'+str(c)+'B'
+
+# Daily Temperatures
+
+
+
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        for(int i=0;i<temperatures.length;i++){
+            if(i==temperatures.length-1){
+                temperatures[i]=0;
+                break;
+            }
+            for(int j=i+1;j<temperatures.length;j++){
+                if(temperatures[i]<temperatures[j]){
+                    temperatures[i]=j-i;
+                    break;
+                }
+                if(j==temperatures.length-1){
+                    temperatures[i]=0;
+                    break;
+                }
+            }
+        }
+        return temperatures;
+    }
+}
+
+# Rotate Image
+
+class Solution {
+    public void rotate(int[][] matrix) {
+        int edgeLength = matrix.length;
+
+        int top = 0;
+        int bottom = edgeLength - 1;
+
+        while (top < bottom) {
+            for (int col = 0; col < edgeLength; col++) {
+                int temp = matrix[top][col];
+                matrix[top][col] = matrix[bottom][col];
+                matrix[bottom][col] = temp;
+            }
+            top++;
+            bottom--;
+        }
+
+        for (int row = 0; row < edgeLength; row++) {
+            for (int col = row + 1; col < edgeLength; col++) {
+                int temp = matrix[row][col];
+                matrix[row][col] = matrix[col][row];
+                matrix[col][row] = temp;
+            }
+        }        
+    }
+}
+
+# Text Justification
+
+class Solution {
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> ans = new ArrayList<>();
+        int n = words.length;
+        int i = 0;
+        
+        while (i < n) {
+            int charCnt = 0;
+            int j = i;
+            while (j < n && charCnt + words[j].length() <= maxWidth) {
+                charCnt += words[j].length() + 1; // +1 for space; beacuse some situation might arrise where you take the group of words whose char counts exactly to the maxWidth, now here the text can not be justified. Hence assume a minimum of single space
+                j++;
+            }
+            
+            StringBuilder sb = new StringBuilder();
+            int spaces = maxWidth - (charCnt - (j - i));
+            int gaps = j - i - 1;
+            
+        
+//if it is last line or only one word, then we need to keep it left justified
+            if (j == n || gaps == 0) {
+                for (int k = i; k < j; k++) {
+                    sb.append(words[k]);
+                    if (k < j - 1) sb.append(" ");
+                }
+                while (sb.length() < maxWidth) sb.append(" ");
+            } else {
+                for (int k = i; k < j; k++) {
+                    sb.append(words[k]);
+                    if (k < j - 1) {
+                        int spaceToAdd = spaces / gaps + (k - i < spaces % gaps ? 1 : 0);
+                        for (int l = 0; l < spaceToAdd; l++) {
+                            sb.append(" ");
+                        }
+                    }
+                }
+            }
+            
+            ans.add(sb.toString());
+            i = j;
+        }
+        
+        return ans;
+    }
+}
+
+# zigzag Conversion
+
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        StringBuilder a = new StringBuilder();
+        for (int i = 0; i < numRows; i++) {
+            for (int j = i; j < s.length(); j += (2 * (numRows - 1))) {
+                a.append(s.charAt(j));
+                if (i > 0 && i < numRows - 1 && j + (2 * (numRows - 1)) - (2 * i) < s.length()) {
+                    a.append(s.charAt(j + (2 * (numRows - 1)) - (2 * i)));
+                }
+            }
+        }
+        return a.toString();
+    }
+}
