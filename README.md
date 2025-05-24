@@ -21,7 +21,7 @@ class Solution {
     }
 }
 
-#FIND THE PEAKS
+# FIND THE PEAKS
 
 class Solution {
     public List<Integer> findPeaks(int[] mountain) {
@@ -37,7 +37,7 @@ class Solution {
     }
 }
 
-#BUY TWO CHOCOLATES
+# BUY TWO CHOCOLATES
 
 class Solution {
     public int buyChoco(int[] arr, int key) {
@@ -63,7 +63,7 @@ class Solution {
     }
 }
 
-#HOUSE ROBBER
+# HOUSE ROBBER
 
 class Solution {
     public int rob(int[] nums) {
